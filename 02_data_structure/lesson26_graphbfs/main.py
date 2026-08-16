@@ -1,10 +1,4 @@
-# graph = {
-#     "A": ["B", "C"],
-#     "B": ["A", "C", "D"],
-#     "C": ["A", "B", "D"],
-#     "D": ["B", "C"]
-# }
-
+from collections import deque
 
 class Graph:
     def __init__(self):
@@ -58,17 +52,67 @@ class Graph:
         print(vertex)
         for neighbors in self.graph[vertex]:
             self._dfs(neighbors, visited)
-        # print(vertex)
+
+    def bfs(self, start):
+        visited = set()
+        queue = deque()
+
+        visited.add(start)
+        queue.append(start)
+
+        while queue:
+            vertex = queue.popleft()
+            print(vertex)
+            for neighbors in self.graph[vertex]:
+                if neighbors not in visited:
+                    visited.add(neighbors)
+                    queue.append(neighbors)
+
+    def shortest_path(self, start, target):
+        visited = set()
+        parent = {}
+
+        queue = deque()
+        visited.add(start)
+        queue.append(start)
+
+        while queue:
+            vertex = queue.popleft()
+            if vertex == target:
+                break
+            for neighbors in self.graph[vertex]:
+                if neighbors not in visited:
+                    visited.add(neighbors)
+                    parent[neighbors] = vertex
+                    queue.append(neighbors)
+
+        if target not in visited:
+            return None
+
+        path = []
+        current = target
+
+        while current != start:
+            path.append(current)
+            current = parent[current]
+
+        path.append(start)
+        path.reverse()
+
+        return path
 
 g = Graph()
 g.add_vertex("A")
 g.add_vertex("B")
 g.add_vertex("C")
 g.add_vertex("D")
+g.add_vertex("E")
+
 g.add_edge("A","B")
 g.add_edge("A","C")
 g.add_edge("B","D")
 g.add_edge("C","D")
+g.add_edge("D","E")
 g.display()
 
-print(g.dfs("A"))
+print(g.shortest_path("A","E"))
