@@ -1,0 +1,7 @@
+MODEL_NAME = "Qwen3"
+
+DEVICE = "cuda"
+
+PORT = 8000
+
+MAX_TOKENS = 2048
