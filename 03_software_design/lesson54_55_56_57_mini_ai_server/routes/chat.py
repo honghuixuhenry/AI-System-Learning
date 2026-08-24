@@ -15,5 +15,5 @@ reply = service.generate()
 @app.post("/chat")
 def chat(request):
     return {
-        "reply": reply = service.generate(request.message)
+        "reply": service.generate(request.message)
     }
