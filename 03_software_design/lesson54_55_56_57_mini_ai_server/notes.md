@@ -1,0 +1,7 @@
+Route
+      │
+      ▼
+Service
+      │
+      ▼
+LLM / Database

@@ -1,4 +1,4 @@
-MODEL_NAME = "Qwen3"
+MODEL_NAME = "Qwen"
 
 DEVICE = "cuda"
 
