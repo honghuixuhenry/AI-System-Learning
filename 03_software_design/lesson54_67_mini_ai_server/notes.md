@@ -34,3 +34,11 @@
                 ┌──────────┼──────────┐
                 ▼          ▼          ▼
               Qwen       Llama     DeepSeek
+
+Server works
++
+I know how well it works
++
+I know when it fails
++
+I can locate where it fails

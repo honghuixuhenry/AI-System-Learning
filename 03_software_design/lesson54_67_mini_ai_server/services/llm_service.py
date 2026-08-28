@@ -10,7 +10,7 @@ class LLMService:
         self.llm = llm
         self.cache = cache
 
-    def generate(self, prompt):
+    def generate(self, prompt: str) -> str:
         cached_result = self.cache.get()
 
         if cached_result is not None:

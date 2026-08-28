@@ -6,8 +6,13 @@ from workers.inference_worker import task_queue
 from models.request import ChatRequest
 from concurrent.futures import Future
 from queue import Full
+import uuid 
+import logging
 
+logger = logging.getLogger(__name__)
 router = APIRouter()
+
+
 @router.post("/chat")
 def chat(request: ChatRequest, service: LLMService = Depends(get_llm_service)):
     return {
@@ -16,6 +21,12 @@ def chat(request: ChatRequest, service: LLMService = Depends(get_llm_service)):
 
 @router.post("/chat")
 def chat(request: ChatRequest):
+    request_id = str(uuid.uuid4())[:8]
+
+    logger.info(
+        f"[{request_id}] Request received"
+    )
+
     future = Future()
     task = {
         "prompt": request.message,
@@ -30,12 +41,16 @@ def chat(request: ChatRequest):
         )
     try:
         result = future.result(timeout=30)
+        logger.info(
+            f"[{request_id}] Request completed"
+        )
     except TimeoutError:
         raise HTTPException(
             status_code=504,
             detail="Inference Timeout"
         )
     return {
+        "request_id": request_id,
         "reply": result
     }
 
