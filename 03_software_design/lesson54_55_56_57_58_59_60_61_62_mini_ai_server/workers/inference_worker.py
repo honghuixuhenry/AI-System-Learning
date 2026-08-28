@@ -21,7 +21,7 @@ def worker():
 
 
 worker_thread = threading.Thread(
-    target = worker
+    target = worker,
     daemon = True
 )
 
