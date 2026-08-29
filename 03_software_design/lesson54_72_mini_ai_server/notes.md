@@ -42,3 +42,10 @@ I know how well it works
 I know when it fails
 +
 I can locate where it fails
+
+SQL: 
+
+Create → INSERT
+Read   → SELECT
+Update → UPDATE
+Delete → DELETE
