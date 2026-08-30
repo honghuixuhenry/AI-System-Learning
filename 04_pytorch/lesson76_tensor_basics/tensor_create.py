@@ -1,0 +1,37 @@
+import torch
+
+
+x = torch.tensor(
+    [
+        [1, 2, 3],
+        [4, 5, 6]
+    ],
+    dtype=torch.float32
+)
+
+print(x)
+
+print(
+    "shape:",
+    x.shape
+)
+
+print(
+    "dtype:",
+    x.dtype
+)
+
+print(
+    "device:",
+    x.device
+)
+
+print(
+    "ndim:",
+    x.ndim
+)
+
+print(
+    "numel:",
+    x.numel()
+)
