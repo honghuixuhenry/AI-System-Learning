@@ -25,3 +25,4 @@ class SystemUnderTest:
     ) -> ExecutionTrace:
 
         raise NotImplementedError
+
